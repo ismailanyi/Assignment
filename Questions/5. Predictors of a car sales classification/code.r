@@ -1,6 +1,3 @@
-install.packages("dplyr")
-install.packages("randomForest")
-
 library(dplyr)
 library(randomForest)
 
