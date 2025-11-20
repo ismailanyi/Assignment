@@ -7,7 +7,6 @@ View(bmw)
 str(bmw)
 summary(bmw)
 
-#Average price and sales volume by region
 region_summary <- bmw %>%
   group_by(Region) %>% 
   summarise(
@@ -18,7 +17,6 @@ region_summary <- bmw %>%
 
 print(region_summary)
 
-#Dot plot to how the average price for each region
 ggplot(region_summary, aes(x = reorder(Region, -Avg_Price), 
                            y = Avg_Price, 
                            color = Region)) + 
@@ -29,7 +27,6 @@ ggplot(region_summary, aes(x = reorder(Region, -Avg_Price),
   theme_minimal() + 
   theme(legend.position = 'none')
 
-#Dot plot to display the average sales for each region
 ggplot(region_summary, aes(x = reorder(Region, -Avg_Sales_Volume), 
                            y = Avg_Sales_Volume, 
                            color = Region)) + 
@@ -40,11 +37,9 @@ ggplot(region_summary, aes(x = reorder(Region, -Avg_Sales_Volume),
   theme_minimal() + 
   theme(legend.position = 'none')
 
-#Calculate the correlation between Average Price and Average sales
 correlation <- cor(region_summary$Avg_Price, region_summary$Avg_Sales_Volume, method = 'pearson')
 print(correlation)
 
-#Scatter plot with regression line to show the correlation
 ggplot(region_summary, aes(x = Avg_Price, 
                            y = Avg_Sales_Volume, 
                            color = Region)) + 
@@ -57,7 +52,6 @@ ggplot(region_summary, aes(x = Avg_Price,
   ) + 
   theme_minimal()
 
-# Regional Trends over Time
 trend_data <- bmw %>%
   group_by(Year, Region) %>%
   summarise(Avg_Price = mean(Price_USD, na.rm = TRUE),

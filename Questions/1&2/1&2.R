@@ -7,10 +7,9 @@ df<- read.csv("realistic_bmw_data.csv")
 print(head(df))
 missing_values <- colSums(is.na(df))
 print(missing_values)
-#check duplicate rows
+
 num_duplicates <- sum(duplicated(df))
 print(num_duplicates)
-#none returned(clean)
 
 # CORRELATION MATRIX AND HEATMAP
 numeric_df <- df %>% select_if(is.numeric)
@@ -30,8 +29,6 @@ corrplot(correlation_matrix,
 
 # VISUALIZATION FOR QUESTION 1: PRICE DETERMINANTS
 
-
-
 #  1a. Scatter Plot: Mileage vs. Price 
 
 ggplot(df, aes(x = Mileage_KM, y = Price_USD)) +
@@ -47,7 +44,6 @@ ggplot(df, aes(x = Transmission, y = Price_USD, fill = Transmission)) +
   labs(title = "Price Distribution by Transmission Type") +
   theme_minimal() +
   theme(legend.position = "none")
-  
 
 
 
